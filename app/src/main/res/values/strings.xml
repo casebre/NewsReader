@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NewsReader App</string>
+    <string name="published_date">Published</string>
+    <string name="read_article">Read</string>
+</resources>

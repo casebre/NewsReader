@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,8 +23,10 @@ import retrofit2.http.GET;
 public class MainActivity extends AppCompatActivity implements NewsRecyclerviewAdapter.OnNewsClick {
 
     private static int READ_NEWS_ITEM = 100;
-    private SwipeRefreshLayout swipeLayout;
-    private RecyclerView listNews;
+    @BindView(R.id.swiperefresh) SwipeRefreshLayout swipeLayout;
+    @BindView(R.id.recyclerview_news) RecyclerView listNews;
+    //private SwipeRefreshLayout swipeLayout;
+    //private RecyclerView listNews;
     private Retrofit retrofit;
     private Api api;
     private NewsItemDatabase db;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NewsRecyclerviewA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         swipeLayout = findViewById(R.id.swiperefresh);
         listNews = findViewById(R.id.recyclerview_news);
     }
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NewsRecyclerviewA
     @Override
     public void onStart() {
         super.onStart();
+
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NewsRecyclerviewA
 
     public void loadFeed() {
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.ctvnews.ca/rss/")
+                .baseUrl(getString(R.string.feed_url))
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
         api = retrofit.create(Api.class);

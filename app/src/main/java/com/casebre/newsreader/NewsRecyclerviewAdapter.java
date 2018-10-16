@@ -1,6 +1,7 @@
 package com.casebre.newsreader;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,14 +43,15 @@ public class NewsRecyclerviewAdapter extends RecyclerView.Adapter<NewsRecyclervi
         }
     }
 
-    public NewsRecyclerviewAdapter(Context context, List<NewsItem> newsItems) {
+    public NewsRecyclerviewAdapter(Context context, List<NewsItem> newsItems, OnNewsClick listener) {
         this.context = context;
         this.newsItems = newsItems;
-        this.listener = (OnNewsClick)context;
+        this.listener = listener;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_news, parent, false));
     }
 
@@ -63,12 +65,7 @@ public class NewsRecyclerviewAdapter extends RecyclerView.Adapter<NewsRecyclervi
         holder.txtNewsTitle.setText(newsItems.get(position).getTitle());
         holder.txtPublishedDateTime.setText(newsItems.get(position).getPublishedDate());
         holder.txtDescription.setText(newsItems.get(position).getDescription());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onNewsClicked(newsItems.get(position));
-            }
-        });
+        holder.cardView.setOnClickListener(v -> listener.onNewsClicked(newsItems.get(position)));
         if(newsItems.get(position).getRead())
             holder.linearLayoutRead.setVisibility(View.VISIBLE);
     }

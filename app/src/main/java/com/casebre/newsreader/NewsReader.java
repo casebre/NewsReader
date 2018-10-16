@@ -4,7 +4,6 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 
 
-
 public class NewsReader extends Application {
     private NewsItemDatabase db;
 
@@ -17,4 +16,5 @@ public class NewsReader extends Application {
 
         return db;
     }
+
 }

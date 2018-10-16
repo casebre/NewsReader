@@ -1,4 +1,4 @@
-package com.casebre.newsreader;
+package com.casebre.newsreader.details;
 
 import android.arch.lifecycle.ViewModel;
 

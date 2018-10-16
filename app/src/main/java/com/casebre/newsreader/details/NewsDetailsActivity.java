@@ -1,4 +1,4 @@
-package com.casebre.newsreader;
+package com.casebre.newsreader.details;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +10,16 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.casebre.newsreader.NewsItem;
+import com.casebre.newsreader.R;
+
 public class NewsDetailsActivity extends AppCompatActivity {
 
     private NewsItem newsItem;
     private WebView webView;
     private RelativeLayout layoutProgressBar;
     private ProgressBar progressBar;
-    private NewsItemDatabase db;
+    //private NewsItemDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
         if(getIntent().getSerializableExtra("ITEM") != null)
             newsItem = (NewsItem)getIntent().getSerializableExtra("ITEM");
 
-        db = ((NewsReader)getApplication()).getDb();
+        //db = ((NewsReader)getApplication()).getDb();
 
         webView = findViewById(R.id.webview);
         layoutProgressBar = findViewById(R.id.relative_layout_progressbar);
@@ -51,7 +54,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            db.newsItemDao().updateRead(newsItem.getGuid(), true);
+                            //db.newsItemDao().updateRead(newsItem.getGuid(), true);
                         }
                     }).start();
 

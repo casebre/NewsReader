@@ -17,9 +17,14 @@ import android.view.ViewGroup;
 import com.casebre.newsreader.NewsItem;
 import com.casebre.newsreader.NewsRecyclerviewAdapter;
 import com.casebre.newsreader.R;
+import com.casebre.newsreader.components.AppComponent;
+import com.casebre.newsreader.components.DaggerAppComponent;
+import com.casebre.newsreader.components.ViewModelFactory;
 import com.casebre.newsreader.details.NewsDetailsActivity;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +37,8 @@ public class FeedFragment extends Fragment implements NewsRecyclerviewAdapter.On
     private FeedViewModel feedViewData;
 
     //private NewsItemDatabase db;
+    @Inject
+    ViewModelFactory viewModelFactory;
 
     @BindView(R.id.swiperefresh)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -62,7 +69,10 @@ public class FeedFragment extends Fragment implements NewsRecyclerviewAdapter.On
         super.onViewCreated(view, savedInstanceState);
         swipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout.setRefreshing(false));
 
-        feedViewData = ViewModelProviders.of(this).get(FeedViewModel.class);
+        AppComponent component = DaggerAppComponent.create();
+        component.inject(this);
+
+        feedViewData = ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel.class);
         feedViewData.init();
         feedViewData.getFeed().observe(this, (newsFeed) -> loadFeedRecyclerView(newsFeed.getNewsItemList()));
     }

@@ -25,7 +25,7 @@ public class FeedRepository {
     public LiveData<NewsFeed> getFeed() {
         final MutableLiveData<NewsFeed> data = new MutableLiveData<>();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.ctvnews.ca/rss/")
+                .baseUrl("https://www.cbc.ca")
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
         webservice = retrofit.create(Webservice.class);

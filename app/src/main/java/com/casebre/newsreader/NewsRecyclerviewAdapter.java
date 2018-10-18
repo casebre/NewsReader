@@ -15,6 +15,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class NewsRecyclerviewAdapter extends RecyclerView.Adapter<NewsRecyclerviewAdapter.ViewHolder>{
 
@@ -27,19 +30,27 @@ public class NewsRecyclerviewAdapter extends RecyclerView.Adapter<NewsRecyclervi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtNewsTitle, txtPublishedDateTime, txtDescription;
-        private ImageView imgNews;
-        private CardView cardView;
-        private LinearLayout linearLayoutRead;
+        @BindView(R.id.textview_title)
+        TextView txtNewsTitle;
+
+        @BindView(R.id.textview_datetime)
+        TextView txtPublishedDateTime;
+
+        @BindView(R.id.textview_description)
+        TextView txtDescription;
+
+        @BindView(R.id.imageview_news)
+        ImageView imgNews;
+
+        @BindView(R.id.cardview_news)
+        CardView cardView;
+
+        @BindView(R.id.linearlayout_read)
+        LinearLayout linearLayoutRead;
 
         public ViewHolder(View view) {
             super(view);
-            txtNewsTitle = view.findViewById(R.id.textview_title);
-            txtPublishedDateTime = view.findViewById(R.id.textview_datetime);
-            txtDescription = view.findViewById(R.id.textview_description);
-            imgNews = view.findViewById(R.id.imageview_news);
-            cardView = view.findViewById(R.id.cardview_news);
-            linearLayoutRead = view.findViewById(R.id.linearlayout_read);
+            ButterKnife.bind(this, view);
         }
     }
 

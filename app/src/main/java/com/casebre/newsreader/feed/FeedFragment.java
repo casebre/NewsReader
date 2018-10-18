@@ -2,10 +2,10 @@ package com.casebre.newsreader.feed;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,7 +20,7 @@ import com.casebre.newsreader.R;
 import com.casebre.newsreader.components.AppComponent;
 import com.casebre.newsreader.components.DaggerAppComponent;
 import com.casebre.newsreader.components.ViewModelFactory;
-import com.casebre.newsreader.details.NewsDetailsActivity;
+import com.casebre.newsreader.details.NewsDetailsFragment;
 
 import java.util.List;
 
@@ -90,9 +90,10 @@ public class FeedFragment extends Fragment implements NewsRecyclerviewAdapter.On
 
     @Override
     public void onNewsClicked(NewsItem newsItem) {
-        Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
-        intent.putExtra("ITEM", newsItem);
-        startActivityForResult(intent, READ_NEWS_ITEM);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(((ViewGroup) getView().getParent()).getId(), NewsDetailsFragment.newInstance(newsItem));
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     /* @Override

@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import org.jsoup.Jsoup;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Path;
@@ -67,7 +68,7 @@ public class NewsItem implements Serializable {
     }
 
     public String getDescription() {
-        return description;
+        return Jsoup.parse(description).select("p").text();
     }
     public void setDescription(String description) {
         this.description = description;
@@ -81,7 +82,7 @@ public class NewsItem implements Serializable {
     }
 
     public String getUrl() {
-        return url;
+        return Jsoup.parse(description).select("img").attr("src");
     }
     public void setUrl(String url) { this.url = url; }
 
@@ -98,5 +99,4 @@ public class NewsItem implements Serializable {
     public void setRead(Boolean read) {
         this.read = read;
     }
-
 }

@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/textview_title"
-                android:text="Title"
+                tools:text="Title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -35,7 +35,7 @@
 
             <ImageView
                 android:id="@+id/imageview_news"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 />
@@ -55,7 +55,7 @@
                 <TextView
                     android:id="@+id/textview_datetime"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:text="Description"
+                    tools:text="Description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -64,7 +64,7 @@
             <TextView
                 android:id="@+id/textview_description"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="Description"
+                tools:text="Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
